@@ -6,10 +6,13 @@ import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
 import page404 from '../../assets/page404.jpg';
 import Blog from "../../Pages/Blog/Blog";
+import DisplayError from "../../Shared/DisplayError/DisplayError";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
