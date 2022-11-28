@@ -46,6 +46,23 @@ const MyProducts = () => {
 
             })
     }
+    const handleProductStatus = id => {
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    toast.success('Changed to Sold Successfully');
+                    refetch();
+                }
+            })
+    }
     if (isLoading) {
         return <Loader></Loader>
     }
@@ -61,6 +78,7 @@ const MyProducts = () => {
                             <th>Product Name</th>
                             <th>Resale Price</th>
                             <th>Category</th>
+                            <th>Availability</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -79,6 +97,7 @@ const MyProducts = () => {
                                 <td>{product.product_name}</td>
                                 <td>{product.resale_price}</td>
                                 <td>{product.product_category}</td>
+                                <td>{product?.available === 'available' ? <button onClick={() => handleProductStatus(product._id)} className='btn btn-xs btn-primary'>Sold</button> : <p className='text-success'>Sold</p>}</td>
                                 <td>
                                     <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
                                 </td>
