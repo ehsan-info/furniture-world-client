@@ -21,6 +21,7 @@ import DashboardLayout from "../../Layout/DashboardLayout";
 import Categories from "../../Pages/Categories/Categories";
 import CategoriesProducts from "../../Pages/Categories/CategoriesProducts";
 import AddOrder from "../../Pages/Dashboard/AddOrder/AddOrder";
+import Products from "../../Pages/Products/Products";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/products',
+                element: <Products></Products>,
+                loader: () => fetch(`http://localhost:5000/products`)
             },
             {
                 path: '/blog',

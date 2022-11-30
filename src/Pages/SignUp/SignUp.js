@@ -30,7 +30,7 @@ const SignUp = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email, data.role);
+                        saveUser(data.name, data.email, data.role, 'unverified');
                     })
                     .catch(error => console.log(error))
 
@@ -40,8 +40,8 @@ const SignUp = () => {
                 setSignUpError(error.message);
             });
     }
-    const saveUser = (name, email, role) => {
-        const user = { name, email, role };
+    const saveUser = (name, email, role, status) => {
+        const user = { name, email, role, status };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {

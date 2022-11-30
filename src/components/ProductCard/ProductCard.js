@@ -12,9 +12,9 @@ const ProductCard = ({ product }) => {
     return (
         <div>
             <div className="card bg-base-100 shadow-xl">
-                <figure><img src={image} alt="Shoes" /></figure>
+                <figure className='h-80'><img src={image} alt="Shoes" /></figure>
                 <div className="card-body">
-                    <h2 className="card-title">
+                    <h2 className="card-title h-36">
                         {product_name}
                         <div className="badge badge-secondary">{available}</div>
                     </h2>
