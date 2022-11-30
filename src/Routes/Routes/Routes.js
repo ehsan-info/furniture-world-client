@@ -22,6 +22,8 @@ import Categories from "../../Pages/Categories/Categories";
 import CategoriesProducts from "../../Pages/Categories/CategoriesProducts";
 import AddOrder from "../../Pages/Dashboard/AddOrder/AddOrder";
 import Products from "../../Pages/Products/Products";
+import ReportedList from "../../Pages/Dashboard/ReportedList/ReportedList";
+import Payment from "../../Pages/Payment/Payment";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -90,8 +92,18 @@ const router = createBrowserRouter([
                 element: <AllBuyer></AllBuyer>
             },
             {
-                path: '/dashboard/reporteditems',
-                element: <ReportedItems></ReportedItems>
+                path: '/dashboard/reporteditems/:id',
+                element: <ReportedItems></ReportedItems>,
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+            },
+            {
+                path: '/dashboard/reportedlist',
+                element: <ReportedList></ReportedList>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`)
             }
         ]
     },

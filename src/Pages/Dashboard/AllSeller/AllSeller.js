@@ -91,8 +91,8 @@ const AllSeller = () => {
                             users.length > 0 ?
                                 users.map((user, i) => <tr key={user._id}>
                                     <th>{i + 1}</th>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
+                                    <td>{user?.name}</td>
+                                    <td>{user?.email}</td>
                                     <td>{user?.status !== 'unverified' ? <button onClick={() => handleVerify(user._id, 'unverified')} className='btn btn-xs btn-primary'>{user.status}</button> : <button onClick={() => handleVerify(user._id, 'verified')} className='btn btn-xs btn-primary'>{user.status}</button>}</td>
                                     <td>{user?.role}</td>
                                     <td>
