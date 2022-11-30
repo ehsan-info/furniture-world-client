@@ -44,8 +44,8 @@ const AddProduct = () => {
                         condition: data.condition,
                         description: data.description,
                         location: data.location,
-                        seller_name: data.seller_name,
-                        seller_email: data.seller_email,
+                        seller_name: user?.displayName,
+                        seller_email: user?.email,
                         phone_number: data.phone_number,
                         available: 'available',
                         advertised: 'advertised',
@@ -76,103 +76,105 @@ const AddProduct = () => {
         return <Loader></Loader>
     }
     return (
-        <div className='w-96 p-7'>
+        <div className=' p-7'>
             <h2 className='text-3xl'>Add a Product</h2>
-            <form onSubmit={handleSubmit(handleAddProduct)}>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Add Image</span></label>
-                    <input type="file" {...register("image",
-                        {
-                            required: "Image is required"
-                        })}
-                        className="input input-bordered w-full max-w-xs" />
-                    {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Product Name</span></label>
-                    <input type="text" {...register("product_name",
-                        {
-                            required: "Product Name is required"
-                        })}
-                        className="input input-bordered w-full max-w-xs" />
-                    {errors.product_name && <p className='text-red-500'>{errors.product_name.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Category</span></label>
-                    <select {...register("category", { required: "Category is Required" })} className="select select-bordered w-full max-w-xs">
-                        <option disabled >Please Select a Category</option>
-                        {
-                            categories.map(category => <option key={category._id} value={category._id}>{category.category_title}</option>)
-                        }
-                    </select>
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Resale Price</span></label>
-                    <input type="text" {...register("resale_price",
-                        {
-                            required: "Resale Price is required"
-                        })}
-                        className="input input-bordered w-full max-w-xs" />
-                    {errors.resale_price && <p className='text-red-500'>{errors.resale_price.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Original Price</span></label>
-                    <input type="text" {...register("original_price",
-                        {
-                            required: "Original Price is required"
-                        })}
-                        className="input input-bordered w-full max-w-xs" />
-                    {errors.original_price && <p className='text-red-500'>{errors.original_price.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Purchase Date</span></label>
-                    <input type="date" {...register("purchase_date",
-                        {
-                            required: "Purchase Date is required"
-                        })}
-                        className="input input-bordered w-full max-w-xs" />
-                    {errors.purchase_date && <p className='text-red-500'>{errors.purchase_date.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Condition</span></label>
-                    <select {...register("condition", { required: "Condition is Required" })} className="select select-bordered w-full max-w-xs">
-                        <option disabled>Please Select Condition</option>
-                        <option value="excellent">Excellent</option>
-                        <option value="good">Good</option>
-                        <option value="fair">Fair</option>
-                    </select>
-                    {errors.condition && <p className='text-red-500'>{errors.condition.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Description</span></label>
-                    <input type="text" {...register("description")}
-                        className="input input-bordered w-full max-w-xs" />
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Location</span></label>
-                    <input type="text" {...register("location",
-                        {
-                            required: "Location is required"
-                        })}
-                        className="input input-bordered w-full max-w-xs" />
-                    {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Seller Name</span></label>
-                    <input defaultValue={user?.displayName} type="text" {...register("seller-name")} className="input input-bordered w-full max-w-xs" disabled />
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Seller Email</span></label>
-                    <input type="email" defaultValue={user?.email}  {...register("seller_email")} className="input input-bordered w-full max-w-xs" disabled />
-                </div>
-                <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Phone Number</span></label>
-                    <input type="text" {...register("phone_number",
-                        {
-                            required: "Phone Number is required"
-                        })}
-                        className="input input-bordered w-full max-w-xs" />
-                    {errors.phone_number && <p className='text-red-500'>{errors.phone_number.message}</p>}
+            <form className='' onSubmit={handleSubmit(handleAddProduct)}>
+                <div className='grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-4'>
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text">Add Image</span></label>
+                        <input type="file" {...register("image",
+                            {
+                                required: "Image is required"
+                            })}
+                            className="input input-bordered w-full " />
+                        {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text">Product Name</span></label>
+                        <input type="text" {...register("product_name",
+                            {
+                                required: "Product Name is required"
+                            })}
+                            className="input input-bordered w-full" />
+                        {errors.product_name && <p className='text-red-500'>{errors.product_name.message}</p>}
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text">Category</span></label>
+                        <select {...register("category", { required: "Category is Required" })} className="select select-bordered w-full ">
+                            <option disabled >Please Select a Category</option>
+                            {
+                                categories.map(category => <option key={category._id} value={category._id}>{category.category_title}</option>)
+                            }
+                        </select>
+                    </div>
+                    <div className="form-control w-full ">
+                        <label className="label"><span className="label-text">Resale Price</span></label>
+                        <input type="text" {...register("resale_price",
+                            {
+                                required: "Resale Price is required"
+                            })}
+                            className="input input-bordered w-full " />
+                        {errors.resale_price && <p className='text-red-500'>{errors.resale_price.message}</p>}
+                    </div>
+                    <div className="form-control w-full ">
+                        <label className="label"><span className="label-text">Original Price</span></label>
+                        <input type="text" {...register("original_price",
+                            {
+                                required: "Original Price is required"
+                            })}
+                            className="input input-bordered w-full " />
+                        {errors.original_price && <p className='text-red-500'>{errors.original_price.message}</p>}
+                    </div>
+                    <div className="form-control w-full ">
+                        <label className="label"><span className="label-text">Purchase Date</span></label>
+                        <input type="date" {...register("purchase_date",
+                            {
+                                required: "Purchase Date is required"
+                            })}
+                            className="input input-bordered w-full " />
+                        {errors.purchase_date && <p className='text-red-500'>{errors.purchase_date.message}</p>}
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text">Condition</span></label>
+                        <select {...register("condition", { required: "Condition is Required" })} className="select select-bordered w-full ">
+                            <option disabled>Please Select Condition</option>
+                            <option value="excellent">Excellent</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                        </select>
+                        {errors.condition && <p className='text-red-500'>{errors.condition.message}</p>}
+                    </div>
+                    <div className="form-control w-full ">
+                        <label className="label"><span className="label-text">Description</span></label>
+                        <input type="text" {...register("description")}
+                            className="input input-bordered w-full " />
+                    </div>
+                    <div className="form-control w-full ">
+                        <label className="label"><span className="label-text">Location</span></label>
+                        <input type="text" {...register("location",
+                            {
+                                required: "Location is required"
+                            })}
+                            className="input input-bordered w-full" />
+                        {errors.location && <p className='text-red-500'>{errors.location.message}</p>}
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text">Seller Name</span></label>
+                        <input defaultValue={user?.displayName} type="text" {...register("seller_name")} className="input input-bordered w-full" disabled />
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text">Seller Email</span></label>
+                        <input type="email" defaultValue={user?.email}  {...register("seller_email")} className="input input-bordered w-full " disabled />
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label"><span className="label-text">Phone Number</span></label>
+                        <input type="text" {...register("phone_number",
+                            {
+                                required: "Phone Number is required"
+                            })}
+                            className="input input-bordered w-full" />
+                        {errors.phone_number && <p className='text-red-500'>{errors.phone_number.message}</p>}
+                    </div>
                 </div>
                 <input className='btn btn-accent w-full mt-8' value='Add Product' type="submit" />
             </form>

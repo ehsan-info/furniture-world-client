@@ -1,10 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import Loader from '../../../Shared/Loader/Loader';
 import ConfirmationModal from '../../../Shared/ConfirmationModal/ConfirmationModal';
+import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const MyProducts = () => {
+    const { user } = useContext(AuthContext);
+    // console.log(user.email);
     const [deletingProduct, setDeletingProduct] = useState(null);
     const closeModal = () => {
         setDeletingProduct(null);
@@ -14,7 +17,7 @@ const MyProducts = () => {
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/products`, {
+                const res = await fetch(`http://localhost:5000/products/${user?.email}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -89,6 +92,12 @@ const MyProducts = () => {
     return (
         <div>
             <h2 className='text-3xl mb-4'>My Products: {products?.length}</h2>
+            {/* {
+                products.length <= 0 ?
+                    <div><h2>No Products Available</h2></div>
+                    :
+                    <div><h2>N</h2></div>
+            } */}
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -106,24 +115,26 @@ const MyProducts = () => {
                     <tbody>
 
                         {
-                            products.map((product, i) => <tr key={product._id}>
-                                <th>{i + 1}</th>
-                                <td>
-                                    <div className="avatar">
-                                        <div className="w-24 rounded-full">
-                                            <img src={product.image} alt="" />
+                            products.length > 0 ?
+                                products.map((product, i) => <tr key={product._id}>
+                                    <th>{i + 1}</th>
+                                    <td>
+                                        <div className="avatar">
+                                            <div className="w-24 rounded-full">
+                                                <img src={product.image} alt="" />
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>{product.product_name}</td>
-                                <td>{product.resale_price}</td>
-                                <td>{product.product_category}</td>
-                                <td>{product?.available === 'available' ? <button onClick={() => handleProductStatus(product._id)} className='btn btn-xs btn-primary'>Sold</button> : <p className='text-success'>Sold</p>}</td>
-                                <td>{product?.advertised !== 'advertised' ? <button onClick={() => handleProductPromote(product._id, 'advertised')} className='btn btn-xs btn-primary'>{product.advertised}</button> : <button onClick={() => handleProductPromote(product._id, 'notAdvertised')} className='btn btn-xs btn-primary'>{product.advertised}</button>}</td>
-                                <td>
-                                    <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
-                                </td>
-                            </tr>)
+                                    </td>
+                                    <td>{product.product_name}</td>
+                                    <td>{product.resale_price}</td>
+                                    <td>{product.product_category}</td>
+                                    <td>{product?.available === 'available' ? <button onClick={() => handleProductStatus(product._id)} className='btn btn-xs btn-primary'>Sold</button> : <p className='text-success'>Sold</p>}</td>
+                                    <td>{product?.advertised !== 'advertised' ? <button onClick={() => handleProductPromote(product._id, 'advertised')} className='btn btn-xs btn-primary'>{product.advertised}</button> : <button onClick={() => handleProductPromote(product._id, 'notAdvertised')} className='btn btn-xs btn-primary'>{product.advertised}</button>}</td>
+                                    <td>
+                                        <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
+                                    </td>
+                                </tr>)
+                                : <div><h2>No Products Available</h2></div>
                         }
                     </tbody>
                 </table>
