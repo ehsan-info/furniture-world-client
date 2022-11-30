@@ -21,7 +21,6 @@ const CategoryList = () => {
                     categories.map(category => <CategoryCard key={category._id} category={category}></CategoryCard>)
                 }
             </div>
-            <Link to='/categories' className='flex justify-center my-5'><button className="btn btn-primary">Click to See All Category</button></Link>
         </div>
     );
 };

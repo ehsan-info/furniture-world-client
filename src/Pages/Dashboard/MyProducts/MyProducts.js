@@ -63,6 +63,26 @@ const MyProducts = () => {
                 }
             })
     }
+    const handleProductPromote = (id, advertised) => {
+        const state = { advertised };
+        console.log(state);
+        fetch(`http://localhost:5000/products/promote/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(state)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    toast.success(`Changed State of a Product`);
+                    refetch();
+                }
+            })
+    }
     if (isLoading) {
         return <Loader></Loader>
     }
@@ -79,6 +99,7 @@ const MyProducts = () => {
                             <th>Resale Price</th>
                             <th>Category</th>
                             <th>Availability</th>
+                            <th>Promote</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -98,6 +119,7 @@ const MyProducts = () => {
                                 <td>{product.resale_price}</td>
                                 <td>{product.product_category}</td>
                                 <td>{product?.available === 'available' ? <button onClick={() => handleProductStatus(product._id)} className='btn btn-xs btn-primary'>Sold</button> : <p className='text-success'>Sold</p>}</td>
+                                <td>{product?.advertised !== 'advertised' ? <button onClick={() => handleProductPromote(product._id, 'advertised')} className='btn btn-xs btn-primary'>{product.advertised}</button> : <button onClick={() => handleProductPromote(product._id, 'notAdvertised')} className='btn btn-xs btn-primary'>{product.advertised}</button>}</td>
                                 <td>
                                     <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>
                                 </td>

@@ -21,7 +21,7 @@ const AdvertisedProducts = () => {
                     advertisedProducts.map(advertisedProduct => <AdvertisedProduct key={advertisedProduct._id} advertisedProduct={advertisedProduct}></AdvertisedProduct>)
                 }
             </div>
-            <Link to='/categories' className='flex justify-center my-5'><button className="btn btn-primary">Click to See All Category</button></Link>
+            <Link to='/products' className='flex justify-center my-5'><button className="btn btn-primary">Click to See All Products</button></Link>
         </div>
     );
 };

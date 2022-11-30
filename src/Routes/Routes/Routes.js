@@ -18,6 +18,7 @@ import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import DashboardLayout from "../../Layout/DashboardLayout";
+import Categories from "../../Pages/Categories/Categories";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/categories',
+                element: <Categories></Categories>
             },
         ]
     },

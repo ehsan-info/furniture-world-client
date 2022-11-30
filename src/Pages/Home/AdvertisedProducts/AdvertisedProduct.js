@@ -14,7 +14,9 @@ const AdvertisedProduct = ({ advertisedProduct }) => {
                 <div className="badge ">Resale Price:<span>${resale_price}</span></div>
                 <div className="badge badge-outline">Original Price:<span>${original_price}</span></div>
             </div>
+
         </div>
+
     );
 };
 
