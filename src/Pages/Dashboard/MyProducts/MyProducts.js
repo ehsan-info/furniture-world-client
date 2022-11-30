@@ -92,12 +92,6 @@ const MyProducts = () => {
     return (
         <div>
             <h2 className='text-3xl mb-4'>My Products: {products?.length}</h2>
-            {/* {
-                products.length <= 0 ?
-                    <div><h2>No Products Available</h2></div>
-                    :
-                    <div><h2>N</h2></div>
-            } */}
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
