@@ -8,7 +8,7 @@ const CategoryCard = ({ category }) => {
             <div className="card-body">
                 <h2 className="card-title">{category_title}</h2>
                 <div className="card-actions justify-end">
-                    <Link to='/categories'><button className="btn">See All Category</button></Link>
+                    <Link to='/categories/catproducts/63845826cb0939a297bb244a'><button className="btn">Explore Category</button></Link>
                 </div>
             </div>
         </div>

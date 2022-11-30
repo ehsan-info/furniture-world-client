@@ -19,6 +19,7 @@ import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Categories from "../../Pages/Categories/Categories";
+import CategoriesProducts from "../../Pages/Categories/CategoriesProducts";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -42,10 +43,9 @@ const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             },
             {
-                path: '/categories',
-                element: <Categories></Categories>,
-                loader: () => fetch(`http://localhost:5000/products`)
-            },
+                path: '/categories/catproducts/63845826cb0939a297bb244a',
+                element: <Categories></Categories>
+            }
         ]
     },
     {

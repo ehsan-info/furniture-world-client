@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard/ProductCard';
 
-const Categories = () => {
+const CategoriesProducts = () => {
     const [categories, setCategories] = useState([]);
-    const [products, setProducts] = useState([]);
-    // const products = useLoaderData();
+    const [catProducts, setCatProducts] = useState([]);
     useEffect(() => {
         fetch(`http://localhost:5000/catCategories`)
             .then(res => res.json())
@@ -13,21 +12,21 @@ const Categories = () => {
                 setCategories(data);
             })
     }, []);
-
-    const gotCat = id => {
-        fetch(`http://localhost:5000/categories/catproducts/${id}`)
+    useEffect(() => {
+        fetch(`http://localhost:5000/categories/catproducts/`)
             .then(res => res.json())
             .then(data => {
-                setProducts(data);
+                setCatProducts(data);
             })
-    }
+    }, []);
     return (
         <div>
             <div className='grid grid-cols-1 lg:grid-cols-4'>
                 <div className='col-span-1'>
                     <ul className="menu p-4 w-80  text-base-content">
+                        <li><Link to='/products'>All Category Products</Link></li>
                         {
-                            categories.map(category => <li><button onClick={() => gotCat(category._id)}>{category.category_title}</button></li>)
+                            categories.map(category => <li><button><Link to={`/categories/catproducts/${category._id}`}>{category.category_title}</Link></button></li>)
                         }
                     </ul>
                 </div>
@@ -35,7 +34,7 @@ const Categories = () => {
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                         {
 
-                            products.map(product =>
+                            catProducts.map(product =>
                                 <ProductCard key={product._id} product={product}></ProductCard>
                             )
                         }
@@ -46,4 +45,4 @@ const Categories = () => {
     );
 };
 
-export default Categories;
+export default CategoriesProducts;

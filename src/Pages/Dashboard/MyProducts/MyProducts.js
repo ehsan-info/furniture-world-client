@@ -29,7 +29,7 @@ const MyProducts = () => {
 
             }
         }
-    })
+    });
 
     const handleDeleteProduct = product => {
         console.log(product);
