@@ -17,7 +17,7 @@ const MyProducts = () => {
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/products/${user?.email}`, {
+                const res = await fetch(`https://furniture-world-server-delta.vercel.app/products/${user?.email}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -33,7 +33,7 @@ const MyProducts = () => {
 
     const handleDeleteProduct = product => {
         console.log(product);
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://furniture-world-server-delta.vercel.app/products/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -50,7 +50,7 @@ const MyProducts = () => {
             })
     }
     const handleProductStatus = id => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://furniture-world-server-delta.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -69,7 +69,7 @@ const MyProducts = () => {
     const handleProductPromote = (id, advertised) => {
         const state = { advertised };
         console.log(state);
-        fetch(`http://localhost:5000/products/promote/${id}`, {
+        fetch(`https://furniture-world-server-delta.vercel.app/products/promote/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

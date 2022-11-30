@@ -14,7 +14,7 @@ const AddProduct = () => {
     const { data: categories, isLoading } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/categories`);
+            const res = await fetch(`https://furniture-world-server-delta.vercel.app/categories`);
             const data = await res.json();
             return data;
         }
@@ -55,7 +55,7 @@ const AddProduct = () => {
 
                     // console.log(imgData.data.url);
                     //save products to the database
-                    fetch(`http://localhost:5000/addproduct`, {
+                    fetch(`https://furniture-world-server-delta.vercel.app/addproduct`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

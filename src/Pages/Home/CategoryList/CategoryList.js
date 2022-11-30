@@ -5,7 +5,7 @@ import CategoryCard from './CategoryCard';
 const CategoryList = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/homecategories`)
+        fetch(`https://furniture-world-server-delta.vercel.app/homecategories`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data);

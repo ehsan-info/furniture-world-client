@@ -12,7 +12,7 @@ const CheckoutForm = ({ orders }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://furniture-world-server-delta.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const CheckoutForm = ({ orders }) => {
                 email: buyer_email,
                 orderId: _id
             }
-            fetch(`http://localhost:5000/payments`, {
+            fetch(`https://furniture-world-server-delta.vercel.app/payments`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

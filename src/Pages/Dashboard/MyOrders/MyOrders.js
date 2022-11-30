@@ -18,7 +18,7 @@ const MyOrders = () => {
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/orders/${user?.email}`, {
+                const res = await fetch(`https://furniture-world-server-delta.vercel.app/orders/${user?.email}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -33,7 +33,7 @@ const MyOrders = () => {
     });
 
     const handleDeleteProduct = product => {
-        fetch(`http://localhost:5000/orders/${product._id}`, {
+        fetch(`https://furniture-world-server-delta.vercel.app/orders/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

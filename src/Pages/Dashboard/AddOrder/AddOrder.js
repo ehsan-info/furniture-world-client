@@ -25,7 +25,7 @@ const AddOrder = () => {
             buyer_location,
             buyer_phone,
         }
-        fetch('http://localhost:5000/order', {
+        fetch('https://furniture-world-server-delta.vercel.app/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -25,7 +25,7 @@ const ReportedItems = () => {
             buyer_phone,
             reason
         }
-        fetch('http://localhost:5000/report', {
+        fetch('https://furniture-world-server-delta.vercel.app/report', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

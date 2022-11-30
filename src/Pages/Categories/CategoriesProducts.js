@@ -6,14 +6,14 @@ const CategoriesProducts = () => {
     const [categories, setCategories] = useState([]);
     const [catProducts, setCatProducts] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/catCategories`)
+        fetch(`https://furniture-world-server-delta.vercel.app/catCategories`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data);
             })
     }, []);
     useEffect(() => {
-        fetch(`http://localhost:5000/categories/catproducts/`)
+        fetch(`https://furniture-world-server-delta.vercel.app/categories/catproducts/`)
             .then(res => res.json())
             .then(data => {
                 setCatProducts(data);

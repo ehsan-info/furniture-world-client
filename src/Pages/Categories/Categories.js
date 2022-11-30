@@ -7,7 +7,7 @@ const Categories = () => {
     const [products, setProducts] = useState([]);
     // const products = useLoaderData();
     useEffect(() => {
-        fetch(`http://localhost:5000/catCategories`)
+        fetch(`https://furniture-world-server-delta.vercel.app/catCategories`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data);
@@ -15,7 +15,7 @@ const Categories = () => {
     }, []);
 
     const gotCat = id => {
-        fetch(`http://localhost:5000/categories/catproducts/${id}`)
+        fetch(`https://furniture-world-server-delta.vercel.app/categories/catproducts/${id}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data);

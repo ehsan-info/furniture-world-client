@@ -42,7 +42,7 @@ const SignUp = () => {
     }
     const saveUser = (name, email, role, status) => {
         const user = { name, email, role, status };
-        fetch('http://localhost:5000/users', {
+        fetch('https://furniture-world-server-delta.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

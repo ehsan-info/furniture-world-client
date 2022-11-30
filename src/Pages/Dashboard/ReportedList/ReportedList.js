@@ -16,7 +16,7 @@ const ReportedList = () => {
         queryKey: ['reports'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/reports`, {
+                const res = await fetch(`https://furniture-world-server-delta.vercel.app/reports`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -31,7 +31,7 @@ const ReportedList = () => {
     });
     const handleDeleteReport = user => {
         console.log(user);
-        fetch(`http://localhost:5000/reports/${user._id}`, {
+        fetch(`https://furniture-world-server-delta.vercel.app/reports/${user._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

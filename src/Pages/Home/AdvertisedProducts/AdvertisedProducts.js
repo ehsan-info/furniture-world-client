@@ -5,7 +5,7 @@ import AdvertisedProduct from './AdvertisedProduct';
 const AdvertisedProducts = () => {
     const [advertisedProducts, setAdvertisedProducts] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/advertisedproducts`)
+        fetch(`https://furniture-world-server-delta.vercel.app/advertisedproducts`)
             .then(res => res.json())
             .then(data => {
                 setAdvertisedProducts(data);

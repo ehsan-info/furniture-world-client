@@ -37,7 +37,7 @@ const router = createBrowserRouter([
             {
                 path: '/products',
                 element: <Products></Products>,
-                loader: () => fetch(`http://localhost:5000/products`)
+                loader: () => fetch(`https://furniture-world-server-delta.vercel.app/products`)
             },
             {
                 path: '/blog',
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addorders/:id',
                 element: <AddOrder></AddOrder>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://furniture-world-server-delta.vercel.app/products/${params.id}`)
             },
             {
                 path: '/dashboard/allseller',
@@ -94,7 +94,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/reporteditems/:id',
                 element: <ReportedItems></ReportedItems>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://furniture-world-server-delta.vercel.app/products/${params.id}`)
             },
             {
                 path: '/dashboard/reportedlist',
@@ -103,7 +103,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`)
+                loader: ({ params }) => fetch(`https://furniture-world-server-delta.vercel.app/orders/${params.id}`)
             }
         ]
     },

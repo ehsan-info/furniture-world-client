@@ -16,7 +16,7 @@ const AllSeller = () => {
         queryKey: ['users'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/allseller`, {
+                const res = await fetch(`https://furniture-world-server-delta.vercel.app/allseller`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -31,7 +31,7 @@ const AllSeller = () => {
     });
     const handleDeleteUser = user => {
         console.log(user);
-        fetch(`http://localhost:5000/allseller/${user._id}`, {
+        fetch(`https://furniture-world-server-delta.vercel.app/allseller/${user._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -50,7 +50,7 @@ const AllSeller = () => {
     const handleVerify = (id, status) => {
         const state = { status };
         console.log(state);
-        fetch(`http://localhost:5000/allseller/status/${id}`, {
+        fetch(`https://furniture-world-server-delta.vercel.app/allseller/status/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
